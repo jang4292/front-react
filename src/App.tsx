@@ -1,21 +1,28 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
-import CssBaseline from '@mui/material/CssBaseline';
-import ProtectedRoute from './components/ProtectedRoute';
-import Layout from './components/Layout';
-import Login from './pages/Login';
-import Dashboard from './pages/Dashboard';
-import Settings from './pages/Settings';
-import { useAuthStore } from './store/authStore';
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
+import { ThemeProvider, createTheme } from "@mui/material/styles";
+import CssBaseline from "@mui/material/CssBaseline";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Layout from "./components/Layout";
+import Login from "./pages/Login";
+import Dashboard from "./pages/Dashboard";
+import Settings from "./pages/Settings";
+import { useAuthStore } from "./store/authStore";
+import MusicList from "./pages/MusicList";
+import MusicUpload from "./pages/MusicUpload";
 
 const theme = createTheme({
   palette: {
-    mode: 'light',
+    mode: "light",
     primary: {
-      main: '#1976d2',
+      main: "#1976d2",
     },
     secondary: {
-      main: '#dc004e',
+      main: "#dc004e",
     },
   },
 });
@@ -48,6 +55,26 @@ function App() {
               <ProtectedRoute>
                 <Layout>
                   <Settings />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/music-list"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <MusicList />
+                </Layout>
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/music-upload"
+            element={
+              <ProtectedRoute>
+                <Layout>
+                  <MusicUpload />
                 </Layout>
               </ProtectedRoute>
             }

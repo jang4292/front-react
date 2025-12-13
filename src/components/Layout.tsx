@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState } from "react";
 import {
   AppBar,
   Box,
@@ -15,15 +15,17 @@ import {
   useTheme,
   useMediaQuery,
   Button,
-} from '@mui/material';
+} from "@mui/material";
 import {
   Menu as MenuIcon,
   Dashboard as DashboardIcon,
   Settings as SettingsIcon,
   Logout as LogoutIcon,
-} from '@mui/icons-material';
-import { useNavigate, useLocation } from 'react-router-dom';
-import { useAuthStore } from '../store/authStore';
+  LibraryMusic as LibraryMusicIcon,
+  LibraryAdd as LibraryAddIcon,
+} from "@mui/icons-material";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useAuthStore } from "../store/authStore";
 
 const drawerWidth = 240;
 
@@ -34,7 +36,7 @@ interface LayoutProps {
 const Layout: React.FC<LayoutProps> = ({ children }) => {
   const [mobileOpen, setMobileOpen] = useState(false);
   const theme = useTheme();
-  const isMobile = useMediaQuery(theme.breakpoints.down('md'));
+  const isMobile = useMediaQuery(theme.breakpoints.down("md"));
   const navigate = useNavigate();
   const location = useLocation();
   const { logout, user } = useAuthStore();
@@ -45,12 +47,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
 
   const handleLogout = () => {
     logout();
-    navigate('/login');
+    navigate("/login");
   };
 
   const menuItems = [
-    { text: 'Dashboard', icon: <DashboardIcon />, path: '/' },
-    { text: 'Settings', icon: <SettingsIcon />, path: '/settings' },
+    { text: "Dashboard", icon: <DashboardIcon />, path: "/" },
+    { text: "Music List", icon: <LibraryMusicIcon />, path: "/music-list" },
+    {
+      text: "Upload Music",
+      icon: <LibraryAddIcon />,
+      path: "/music-upload",
+    },
+    { text: "Settings", icon: <SettingsIcon />, path: "/settings" },
   ];
 
   const drawer = (
@@ -82,7 +90,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
   );
 
   return (
-    <Box sx={{ display: 'flex' }}>
+    <Box sx={{ display: "flex" }}>
       <CssBaseline />
       <AppBar
         position="fixed"
@@ -97,14 +105,18 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             aria-label="open drawer"
             edge="start"
             onClick={handleDrawerToggle}
-            sx={{ mr: 2, display: { md: 'none' } }}
+            sx={{ mr: 2, display: { md: "none" } }}
           >
             <MenuIcon />
           </IconButton>
           <Typography variant="h6" noWrap component="div" sx={{ flexGrow: 1 }}>
-            {user?.name || 'Welcome'}
+            {user?.name || "Welcome"}
           </Typography>
-          <Button color="inherit" startIcon={<LogoutIcon />} onClick={handleLogout}>
+          <Button
+            color="inherit"
+            startIcon={<LogoutIcon />}
+            onClick={handleLogout}
+          >
             Logout
           </Button>
         </Toolbar>
@@ -122,8 +134,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
             keepMounted: true, // Better open performance on mobile.
           }}
           sx={{
-            display: { xs: 'block', md: 'none' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: "block", md: "none" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
         >
           {drawer}
@@ -132,8 +147,11 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
         <Drawer
           variant="permanent"
           sx={{
-            display: { xs: 'none', md: 'block' },
-            '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+            display: { xs: "none", md: "block" },
+            "& .MuiDrawer-paper": {
+              boxSizing: "border-box",
+              width: drawerWidth,
+            },
           }}
           open
         >
