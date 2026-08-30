@@ -14,6 +14,7 @@ import Settings from "./pages/Settings";
 import { useAuthStore } from "./store/authStore";
 import MusicList from "./pages/MusicList";
 import MusicUpload from "./pages/MusicUpload";
+import Musics from "./pages/Musics";
 
 const theme = createTheme({
   palette: {
@@ -79,6 +80,7 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route path="/musics" element={<Musics />} />
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </Router>
