@@ -28,6 +28,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 
 const drawerWidth = 240;
+const appName = import.meta.env.VITE_APP_NAME || 'Admin Panel';
 
 interface LayoutProps {
   children: React.ReactNode;
@@ -65,7 +66,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
     <div>
       <Toolbar>
         <Typography variant="h6" noWrap component="div">
-          Admin Panel
+          {appName}
         </Typography>
       </Toolbar>
       <List>

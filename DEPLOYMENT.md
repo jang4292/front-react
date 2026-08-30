@@ -26,7 +26,10 @@ cp .env.example .env
 
 4. Update `.env` with your configuration:
 ```env
+# API Base URL used by the Vite development proxy
 VITE_API_BASE_URL=https://your-api-domain.com
+
+# Application Name
 VITE_APP_NAME=Admin Panel
 ```
 
@@ -146,14 +149,14 @@ location /api/ {
 Create a `.env` file in the project root:
 
 ```env
-# API Base URL (used for nginx proxy configuration)
+# API Base URL used by the Vite development proxy
 VITE_API_BASE_URL=https://your-api-domain.com
 
 # Application Name
 VITE_APP_NAME=Admin Panel
 ```
 
-**Note:** Environment variables in Vite must be prefixed with `VITE_` to be exposed to the client-side code.
+**Note:** `VITE_API_BASE_URL` is read by `vite.config.ts` for local development proxying. Production API routing is controlled by `nginx.conf.example` unless you change the client API configuration.
 
 ## Troubleshooting
 

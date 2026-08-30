@@ -12,7 +12,6 @@ import {
 } from '@mui/material';
 import { useAuthStore } from '../store/authStore';
 import apiClient from '../lib/apiClient';
-import { mockLogin } from '../utils/mockAuth';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -21,6 +20,7 @@ const Login: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
   const setAuth = useAuthStore((state) => state.setAuth);
+  const showMockLogin = import.meta.env.DEV;
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -45,7 +45,8 @@ const Login: React.FC = () => {
     }
   };
 
-  const handleMockLogin = () => {
+  const handleMockLogin = async () => {
+    const { mockLogin } = await import('../utils/mockAuth');
     const { token, user } = mockLogin();
     setAuth(token, user);
     navigate('/');
@@ -105,20 +106,24 @@ const Login: React.FC = () => {
               {loading ? 'Logging in...' : 'Sign In'}
             </Button>
             
-            <Divider sx={{ my: 2 }}>
-              <Typography variant="body2" color="text.secondary">
-                OR
-              </Typography>
-            </Divider>
-            
-            <Button
-              fullWidth
-              variant="outlined"
-              onClick={handleMockLogin}
-              sx={{ mb: 2 }}
-            >
-              Demo Login (Mock)
-            </Button>
+            {showMockLogin && (
+              <>
+                <Divider sx={{ my: 2 }}>
+                  <Typography variant="body2" color="text.secondary">
+                    OR
+                  </Typography>
+                </Divider>
+
+                <Button
+                  fullWidth
+                  variant="outlined"
+                  onClick={() => void handleMockLogin()}
+                  sx={{ mb: 2 }}
+                >
+                  Demo Login (Mock)
+                </Button>
+              </>
+            )}
           </Box>
         </Paper>
       </Box>
