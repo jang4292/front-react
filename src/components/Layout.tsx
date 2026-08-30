@@ -28,7 +28,7 @@ import { useNavigate, useLocation } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
 
 const drawerWidth = 240;
-const appName = import.meta.env.VITE_APP_NAME || 'Admin Panel';
+const appName = import.meta.env.VITE_APP_NAME || "Admin Panel";
 
 interface LayoutProps {
   children: React.ReactNode;
