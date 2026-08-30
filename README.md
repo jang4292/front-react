@@ -14,7 +14,6 @@ A modern, responsive admin panel built with React, Vite, and TypeScript. This ap
 - ✅ **Responsive Layout** - Drawer is temporary on mobile, permanent on desktop
 - ✅ **JWT Authentication** with automatic logout on 401 errors
 - ✅ **Environment Variables** support
-- ✅ **Music Player Route** at `/musics` with an in-browser audio synthesizer
 
 ## Project Structure
 
@@ -26,7 +25,6 @@ src/
 ├── pages/
 │   ├── Login.tsx           # Login page
 │   ├── Dashboard.tsx       # Main dashboard
-│   ├── Musics.tsx          # Music player page
 │   └── Settings.tsx        # Settings page
 ├── store/
 │   └── authStore.ts        # Zustand auth store with persist
@@ -157,8 +155,8 @@ const response = await apiClient.get('/users');
 
 ## Environment Variables
 
-- `VITE_API_BASE_URL`: Backend API URL used by the Vite development proxy
-- `VITE_APP_NAME`: Application name shown in the layout
+- `VITE_API_BASE_URL`: Backend API URL (used in nginx proxy configuration)
+- `VITE_APP_NAME`: Application name
 
 ## Technologies Used
 
