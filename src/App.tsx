@@ -9,6 +9,7 @@ import CssBaseline from "@mui/material/CssBaseline";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Layout from "./components/Layout";
 import Login from "./pages/Login";
+import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import { useAuthStore } from "./store/authStore";
@@ -39,6 +40,10 @@ function App() {
           <Route
             path="/login"
             element={token ? <Navigate to="/" replace /> : <Login />}
+          />
+          <Route
+            path="/register"
+            element={token ? <Navigate to="/" replace /> : <Register />}
           />
           <Route
             path="/"
