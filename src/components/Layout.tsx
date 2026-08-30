@@ -23,6 +23,7 @@ import {
   Logout as LogoutIcon,
   LibraryMusic as LibraryMusicIcon,
   LibraryAdd as LibraryAddIcon,
+  MusicNote as MusicNoteIcon,
 } from "@mui/icons-material";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useAuthStore } from "../store/authStore";
@@ -58,6 +59,7 @@ const Layout: React.FC<LayoutProps> = ({ children }) => {
       icon: <LibraryAddIcon />,
       path: "/music-upload",
     },
+    { text: "Musics", icon: <MusicNoteIcon />, path: "/musics" },
     { text: "Settings", icon: <SettingsIcon />, path: "/settings" },
   ];
 

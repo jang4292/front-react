@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link as RouterLink } from 'react-router-dom';
 import {
   Container,
   Box,
@@ -9,6 +9,7 @@ import {
   Paper,
   Alert,
   Divider,
+  Link,
 } from '@mui/material';
 import { useAuthStore } from '../store/authStore';
 import apiClient from '../lib/apiClient';
@@ -119,6 +120,12 @@ const Login: React.FC = () => {
             >
               Demo Login (Mock)
             </Button>
+            <Typography variant="body2" align="center">
+              계정이 없으신가요?{' '}
+              <Link component={RouterLink} to="/register">
+                회원가입
+              </Link>
+            </Typography>
           </Box>
         </Paper>
       </Box>
